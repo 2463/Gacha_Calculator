@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/calc.css">
+    <title>確率計算機</title>
+
+    <div>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    </div>
+    <div>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+            integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+            integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4"
+            crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+            integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"></script>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./src/math.js"></script>
+
+
+</head>
+
+<body>
+    <div id="display_area">
+        <div class="box" id="box#0">
+            <div class="result_area">
+                <canvas id="result#0"></canvas>
+            </div>
+            <div class="control_area">
+                <div class="probability_area">
+                    <div class="label">
+                        <label for="probability">目標の確率</label>
+                    </div>
+                    <div class="input">
+                        <input id="probability#0" name="probability" type="number" step="0.1" value="3">%
+                    </div>
+                </div>
+                <div class="target_num_area">
+                    <div class="label">
+                        <label for="target_num">目標数</label>
+                    </div>
+                    <div class="input">
+                        <input id="target_num#0" name="target_num" type="number" step="1" value="1">個
+                    </div>
+                </div>
+                <div id="calculate_button#0" class="calc_button">
+                    <div class="inner_cal_calc_button">計算</div>
+                </div>
+            </div>
+        </div>
+        <div class="box" id="box#1">
+            <h4 style="display:inline">Checkpoint</h3>
+                <div class="checkpoint">
+                    <div class="numberbox">99% : <div class="NN" id="NN#1">??</div> 回</div>
+                    <div class="numberbox">99.9% : <div class="NNN" id="NNN#1">??</div> 回</div>
+                </div>
+        </div>
+        <div class="box" id="box#2">
+            <h2>説明</h2>
+            <p>このページは，以下の使途を想定しています．</p>
+            <ul>
+                <li>抽選システムにおいて，どれくらいの回数を試行する必要があるかを確認する．</li>
+                <li>ガチャを何回引くとあたりを得ることができるか確認する．</li>
+            </ul>
+            <h2>使用方法</h2>
+            <ol>
+                <li>「目標の確率」に所与のあたりの確率を入力します．</li>
+                <li>「目標数」に，あたりが何個必要か入力します．</li>
+                <li>「計算」をクリックします．</li>
+                <li>グラフが表示されます．グラフの横軸は回数，縦軸は確率を意味します．</li>
+                <li>グラフの各点は，所定の回数実行したときの，これまで得たあたりの数が目標数に到達していない確率を表します．
+                    確率が0に近いほど，目標数を達成している可能性が高いことを意味します．表記が正確ではないため，確率がほとんど0であると0と表示されることにご注意ください．</li>
+                <li>「Checkpoint」に数値が入力されます．目標を達成している可能性が99%を初めて上回る回数と，99.9%を初めて上回る回数が表示されます．</li>
+            </ol>
+            <h2>動作原理</h2>
+            <p>
+                このページは以下の数式に基づいて駆動しています．ここで
+                \(\mathbf{p}(k,p,n)\) は確率 \(p\) で発生する事象を \(n\) 回試行したとき，\(k\) 回以上事象が発生する確率を指します．
+            </p>
+            $$\mathbf{p}(k,p,n) = 1 - \sum_{j=0}^{k-1}\begin{pmatrix}n\\j\end{pmatrix}p^{j}(1-p)^{n-j}.$$
+        </div>
+    </div>
+    <script src="src/calc.js"></script>
+</body>
+
+</html>

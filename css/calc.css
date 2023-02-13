@@ -1,0 +1,119 @@
+body {
+    background-image: url("../img/bg.svg");
+    color: #333;
+    font-style: normal;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.box {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 1px 1px 1px #DDD;
+    margin: 0.5% 1%;
+    padding: 0.5% 3%;
+    max-width: 800px;
+    border-radius: 3px;
+    border: 1px #333;
+}
+
+@media screen and (min-width: 500px) {
+    .box {
+        min-width: 500px;
+        width: 60%;
+    }
+
+    #display_area {
+        display: grid;
+        place-items: center;
+    }
+}
+
+.result_area {
+    min-height: 300px;
+}
+
+.control_area {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+input[type="number"] {
+    text-align: right;
+    width: 40px;
+    border: none;
+    padding: 10px 0;
+    border-bottom: solid 1px #DDD;
+    border-radius: 3px;
+    background: none;
+}
+
+input[type="number"]:focus {
+    box-shadow: none;
+    outline: none;
+    border-bottom: solid 2px #DDD;
+    background-position: 0 0;
+}
+
+.calc_button {
+    display: grid;
+    place-items: center;
+    height: 80%;
+    width: 50%;
+    background-color: #F3F355;
+    border: none;
+    box-shadow: 2px 2px 2px #DDD;
+    border-radius: 3px;
+    font-size: larger;
+    transform: skew(-5deg);
+    transition: all 0.2s;
+}
+
+.calc_button:active {
+    transform: scale(0.95) skew(-5deg);
+    box-shadow: 2px 2px 2px #CCC;
+    border: 2px #CCC;
+}
+
+.inner_cal_calc_button {
+    transform: skew(5deg);
+    user-select: none;
+}
+
+.checkpoint {
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 1fr;
+    padding: 1%;
+}
+
+.NN {
+    color: #00ff88;
+    font-size: x-large;
+    display: inline;
+}
+
+.NNN {
+    color: #0000FF;
+    font-size: x-large;
+    display: inline;
+}
+
+.katex {
+    overflow: scroll hidden
+}
+
+.katex::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+}
+
+.katex::-webkit-scrollbar-track {
+    background-color: #EEE;
+    border-radius: 100px;
+}
+
+.katex::-webkit-scrollbar-thumb {
+    background-color: #CCC;
+    border-radius: 100px;
+}
